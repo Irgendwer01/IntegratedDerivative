@@ -1,5 +1,19 @@
 apply from: 'gradle/scripts/helpers.gradle'
 
+def debug_terminals = true
+
+final def mod_dependencies = [
+        'integrated-dynamics-236307:3159505': [true],
+        'common-capabilities-247007:3053017': [true],
+        'cyclops-core-232758:3159497': [true],
+        'integrated-terminals-295910:3010622': [debug_terminals],
+]
+
+final def runtime_dependencies = [
+        'jei-238222:5101347': [true],
+        'hwyla-253449:2568751': [true],
+]
+
 repositories {
     // Other repositories described by default:
     // CleanroomMC: https://maven.cleanroommc.com
@@ -59,4 +73,18 @@ dependencies {
     // implementation ('com.google.code.gson:gson:2.8.6') {
     //     transitive = false
     // }
+
+    mod_dependencies.entrySet().forEach {
+        def mod = rfg.deobf('curse.maven:' + it.key)
+        compileOnly mod
+        if (it.value.any { it.toBoolean() }) {
+            runtimeOnly mod
+        }
+    }
+    runtime_dependencies.entrySet().forEach {
+        if (it.value.any { it.toBoolean() }) {
+            def mod = rfg.deobf('curse.maven:' + it.key)
+            runtimeOnly mod
+        }
+    }
 }
