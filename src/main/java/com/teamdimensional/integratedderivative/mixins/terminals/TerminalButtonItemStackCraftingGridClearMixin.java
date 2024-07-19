@@ -1,4 +1,4 @@
-package com.teamdimensional.integratedderivative.mixins;
+package com.teamdimensional.integratedderivative.mixins.terminals;
 
 import com.teamdimensional.integratedderivative.IntegratedDerivativeConfig;
 import org.cyclops.integratedterminals.core.terminalstorage.button.TerminalButtonItemStackCraftingGridClear;

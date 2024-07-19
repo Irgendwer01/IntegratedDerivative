@@ -1,0 +1,16 @@
+{
+  "package": "com.teamdimensional.integratedderivative.mixins.terminals",
+  "required": true,
+  "refmap": "mixins.${mod_id}.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.5",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "TerminalStorageIngredientItemStackCraftingGridSetRecipeMixin"
+  ],
+  "server": [],
+  "client": [
+    "TerminalButtonItemStackCraftingGridClearMixin",
+    "TerminalStorageRecipeTransferHandlerMixin"
+  ]
+}

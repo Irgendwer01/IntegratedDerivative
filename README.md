@@ -1,20 +1,25 @@
-## TemplateDevEnv
+## Integrated Derivative
 
-Template workspace for modding Minecraft 1.12.2. Licensed under MIT, it is made for public use.
+Giving the Integrated Terminals mod the much-needed love, for Minecraft 1.12.
 
-This template currently utilizies **Gradle 8.7** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 1.3.35** + **Forge 14.23.5.2847**.
+Integrated Dynamics is a very powerful automation mod that also offers terminals similar to mods such as AE2 and RS (with Integrated Terminals). Unfortunately, Integrated Terminals' UX is relatively bad and can be daunting and difficult to use for many players. This mod is made to fix those difficulties.
 
-With **coremod and mixin support** that is easy to configure.
+### Dependencies
 
-### Instructions:
+* [Cyclops Core](https://www.curseforge.com/minecraft/mc-mods/cyclops-core) - this is required for ID to work
+* [Common Capabilities](https://www.curseforge.com/minecraft/mc-mods/common-capabilities) - this is required for ID to work
+* [Integrated Dynamics](https://www.curseforge.com/minecraft/mc-mods/integrated-dynamics)
+* [Integrated Terminals](https://www.curseforge.com/minecraft/mc-mods/integrated-terminals) (optional)
 
-1. Click `use this template` at the top.
-2. Clone the repository you have created with this template.
-3. In the local repository, run the command `gradlew setupDecompWorkspace`
-4. Open the project folder in IDEA.
-5. Right-click in IDEA `build.gradle` of your project, and select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-6. Run `gradlew runClient` and `gradlew runServer`, or use the auto-imported run configurations in IntelliJ like `1. Run Client`.
+### Features
 
-### Mixins:
+Most of these features can be toggled in the configuration file of the mod or edited in the ingame menu.
 
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+* Clearing the crafting terminal in any way will attempt to put items back into the network by default.
+  * This applies to clearing it via the x button (unless it is shift-clicked), as well as shift-clicking JEI recipes.
+  * This only has to be enabled on the clientside.
+  * Note: the button's tooltip still will mention shift-clicking putting items back into the network (unless a resourcepack is used to circumvent this).
+* Shift-clicking JEI recipes in the Storage terminal will also try to pull items from inventory in addition to the network.
+  * This must be enabled on the server side to work, and can be disabled on the client side if desired.
+* Recipes can be shift-clicked from JEI even if not all components are present in the network and/or inventory.
+  * This only has to be enabled on the clientside. Disabled by default.
