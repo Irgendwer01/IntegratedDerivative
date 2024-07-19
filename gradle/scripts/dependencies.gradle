@@ -1,12 +1,14 @@
 apply from: 'gradle/scripts/helpers.gradle'
 
 def debug_terminals = true
+def debug_tunnels = true
 
 final def mod_dependencies = [
         'integrated-dynamics-236307:3159505': [true],
         'common-capabilities-247007:3053017': [true],
         'cyclops-core-232758:3159497': [true],
         'integrated-terminals-295910:3010622': [debug_terminals],
+        'integrated-tunnels-251389:3159511': [debug_tunnels],
 ]
 
 final def runtime_dependencies = [
