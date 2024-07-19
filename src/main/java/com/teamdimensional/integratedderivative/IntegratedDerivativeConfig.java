@@ -15,6 +15,9 @@ public class IntegratedDerivativeConfig {
     public static class IntegratedTerminalsFixes {
         @Config.Comment("Should the Shift behavior on the Clear button be inverted? Default: shift-click to send into the network, click to send into the inventory. Clientside only.")
         public boolean invertClearButton = true;
+
+        @Config.Comment("Should we allow shift-clicking a recipe, even if not all ingredients were found? Clientside only.")
+        public boolean allowPartialJeiPull = true;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
