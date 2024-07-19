@@ -17,7 +17,10 @@ public class IntegratedDerivativeConfig {
         public boolean invertClearButton = true;
 
         @Config.Comment("Should we allow shift-clicking a recipe, even if not all ingredients were found? Clientside only.")
-        public boolean allowPartialJeiPull = true;
+        public boolean allowPartialJeiPull = false;
+
+        @Config.Comment("Should we allow shift-clicking recipes from the player's inventory? Required on both sides.")
+        public boolean shiftClickFromPlayerInventory = true;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
