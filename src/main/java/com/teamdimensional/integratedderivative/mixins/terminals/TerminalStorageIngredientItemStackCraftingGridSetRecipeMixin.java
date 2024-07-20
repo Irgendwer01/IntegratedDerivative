@@ -3,7 +3,6 @@ package com.teamdimensional.integratedderivative.mixins.terminals;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.teamdimensional.integratedderivative.IntegratedDerivative;
 import com.teamdimensional.integratedderivative.IntegratedDerivativeConfig;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;

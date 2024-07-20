@@ -10,6 +10,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class TerminalButtonItemStackCraftingGridClearMixin {
     @ModifyVariable(method = "clearGrid", at = @At("HEAD"), argsOnly = true)
     private static boolean editToStorage(boolean var) {
-        return var ^ IntegratedDerivativeConfig.terminalsFixes.invertClearButton;
+        return var ^ IntegratedDerivativeConfig.terminalsTweaks.invertClearButton;
     }
 }

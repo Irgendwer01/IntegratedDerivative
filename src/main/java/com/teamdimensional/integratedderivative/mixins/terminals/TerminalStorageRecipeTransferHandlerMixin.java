@@ -42,7 +42,7 @@ public class TerminalStorageRecipeTransferHandlerMixin {
         PacketHandler instance, PacketBase packet, Operation<Void> original,
         @Local(argsOnly = true) ContainerTerminalStorage storage
     ) {
-        if (IntegratedDerivativeConfig.terminalsFixes.invertClearButton) {
+        if (IntegratedDerivativeConfig.terminalsTweaks.invertClearButton) {
             ITerminalStorageTabCommon tab = storage.getTabCommon(storage.getSelectedTab());
             if (tab instanceof TerminalStorageTabIngredientComponentItemStackCraftingCommon) {
                 IntegratedTerminals._instance.getPacketHandler().sendToServer(
