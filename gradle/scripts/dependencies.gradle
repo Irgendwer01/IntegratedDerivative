@@ -3,6 +3,9 @@ apply from: 'gradle/scripts/helpers.gradle'
 def debug_terminals = true
 def debug_tunnels = true
 
+def run_spark = true
+def run_drawers = true
+
 final def mod_dependencies = [
         'integrated-dynamics-236307:3159505': [true],
         'common-capabilities-247007:3053017': [true],
@@ -14,6 +17,10 @@ final def mod_dependencies = [
 final def runtime_dependencies = [
         'jei-238222:5101347': [true],
         'hwyla-253449:2568751': [true],
+        'storage-drawers-223852:4655859': [run_drawers],
+        'chameleon-230497:2450900': [run_drawers],
+        // NOTE: don't run versions above 1.11.0 because they rely on a mixin that doesn't work in dev environment
+        'spark-unforged-900927:4691415': [run_spark],
 ]
 
 repositories {
