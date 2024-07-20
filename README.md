@@ -20,6 +20,9 @@ Most of these features can be toggled in the configuration file of the mod or ed
 
 * Forestry compat will now be properly compatible with Forestry.
   * Seriously, how do you manage to do this.
+* Large JEI recipes can now be pulled from JEI directly into the logic programmer with structure loss.
+  * This mainly includes two categories of recipes: empty slots (i.e. Advanced Rocketry's machines), and many repeated parts (i.e. Extended Crafting).
+  * Clientside only. Fully configurable in what recipes are affected by this.
 
 ### Integrated Terminals
 
