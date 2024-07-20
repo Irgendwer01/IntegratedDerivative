@@ -31,6 +31,7 @@ Most of these features can be toggled in the configuration file of the mod or ed
     * Uses binary search to find the amount of recipes that can be executed. This is unlikely to change anything, but it was such a free fix I applied it anyway.
     * Replaces the vanilla crafting grid behavior with automatic refill (very slow) with the packet doing the entirety of work inside of it. There are many different issues that it fixes:
       * The inventories are only updated once per shift+click, rather than 64 times. This means any inventory watcher performance bottleneck is fixed (example: Triumph mod in E2:EE adds 4-5 seconds to the time needed to execute a shift+click).
+      * The second effect of this is reducing lag with large storage blocks such as Large Storage Crate (Actually Additions) or Modular Storage (RFTools), as the game's code has to iterate over each slot in the inventory 64 times to find the item in the inventory.
       * The set of items in the network is computed only once, rather than 64 times. This is normally not a problem due to ID having an index, although might come up at some point.
 * Shift+clicking in the crafting grid now outputs configurable amounts of an item.
   * Example: when crafting 6 slabs at a time, AE2 will craft 60 with a shift-click, and Integrated Terminals will craft 66. This mod allows choosing between these 2 behaviors or crafting 6 at a time.
