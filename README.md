@@ -8,6 +8,7 @@ Integrated Dynamics is a very powerful automation mod that also offers terminals
 
 * [Cyclops Core](https://www.curseforge.com/minecraft/mc-mods/cyclops-core) - this is required for ID to work
 * [Common Capabilities](https://www.curseforge.com/minecraft/mc-mods/common-capabilities) - this is required for ID to work
+* [MixinBooter](https://www.curseforge.com/minecraft/mc-mods/mixin-booter) - your pack likely already has this
 * [Integrated Dynamics](https://www.curseforge.com/minecraft/mc-mods/integrated-dynamics)
 * [Integrated Terminals](https://www.curseforge.com/minecraft/mc-mods/integrated-terminals) (optional)
 
