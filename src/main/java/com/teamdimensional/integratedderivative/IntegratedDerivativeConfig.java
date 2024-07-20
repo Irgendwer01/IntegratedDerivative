@@ -33,6 +33,9 @@ public class IntegratedDerivativeConfig {
 
         @Config.Comment("How many items should shift-clicking move out of the crafting grid? Only works if shift-click crafting is optimized. Clientside only.")
         public ShiftClickMode shiftClickCraftingBehavior = ShiftClickMode.STACK_ROUNDED_DOWN;
+
+        @Config.Comment("Should shift+clicking items out of the Terminal extract one stack at a time instead of the full inventory? Clientside only. Requires that the mod is installed on the server.")
+        public boolean shiftClickOneStack = true;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)

@@ -37,3 +37,6 @@ Most of these features can be toggled in the configuration file of the mod or ed
   * Example: when crafting 6 slabs at a time, AE2 will craft 60 with a shift-click, and Integrated Terminals will craft 66. This mod allows choosing between these 2 behaviors or crafting 6 at a time.
   * Clientside setting. Defaults to the AE2 behavior.
   * Will only work if the shift+click performance optimizations are enabled!
+* Shift+clicking out of the network's storage will extract only 1 stack of item instead of filling the player's entire inventory.
+  * Clientside setting.
+  * Note: this looks like it voids items if your inventory is full and you're in creative mode. It ONLY voids items in creative mode. Minecraft's source is dumb, sometimes.

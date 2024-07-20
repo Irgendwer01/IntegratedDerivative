@@ -12,6 +12,7 @@
   "client": [
     "TerminalButtonItemStackCraftingGridClearMixin",
     "TerminalStorageRecipeTransferHandlerMixin",
-    "TerminalStorageTabIngredientComponentItemStackCraftingClientMixin"
+    "TerminalStorageTabIngredientComponentItemStackCraftingClientMixin",
+    "TerminalStorageTabIngredientComponentClientMixin"
   ]
 }
