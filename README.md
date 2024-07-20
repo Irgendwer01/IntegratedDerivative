@@ -1,10 +1,10 @@
-## Integrated Derivative
+# Integrated Derivative
 
 Giving the Integrated Terminals mod the much-needed love, for Minecraft 1.12.
 
 Integrated Dynamics is a very powerful automation mod that also offers terminals similar to mods such as AE2 and RS (with Integrated Terminals). Unfortunately, Integrated Terminals' UX is relatively bad and can be daunting and difficult to use for many players. This mod is made to fix those difficulties.
 
-### Dependencies
+## Dependencies
 
 * [Cyclops Core](https://www.curseforge.com/minecraft/mc-mods/cyclops-core) - this is required for ID to work
 * [Common Capabilities](https://www.curseforge.com/minecraft/mc-mods/common-capabilities) - this is required for ID to work
@@ -12,9 +12,16 @@ Integrated Dynamics is a very powerful automation mod that also offers terminals
 * [Integrated Dynamics](https://www.curseforge.com/minecraft/mc-mods/integrated-dynamics)
 * [Integrated Terminals](https://www.curseforge.com/minecraft/mc-mods/integrated-terminals) (optional)
 
-### Features
+## Features
 
 Most of these features can be toggled in the configuration file of the mod or edited in the ingame menu.
+
+### Integrated Dynamics
+
+* Forestry compat will now be properly compatible with Forestry.
+  * Seriously, how do you manage to do this.
+
+### Integrated Terminals
 
 * Clearing the crafting terminal in any way will attempt to put items back into the network by default.
   * This applies to clearing it via the x button (unless it is shift-clicked), as well as shift-clicking JEI recipes.

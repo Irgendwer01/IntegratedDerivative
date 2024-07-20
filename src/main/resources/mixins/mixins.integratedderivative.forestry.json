@@ -1,0 +1,11 @@
+{
+  "package": "com.teamdimensional.integratedderivative.mixins.dynamics",
+  "required": true,
+  "refmap": "mixins.${mod_id}.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.5",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "TileCarpenterRecipeHandlerMixin"
+  ]
+}

@@ -2,9 +2,11 @@ apply from: 'gradle/scripts/helpers.gradle'
 
 def debug_terminals = true
 def debug_tunnels = true
+def debug_crafting = true
 
 def run_spark = true
 def run_drawers = true
+def debug_forestry = true
 
 final def mod_dependencies = [
         'integrated-dynamics-236307:3159505': [true],
@@ -12,6 +14,8 @@ final def mod_dependencies = [
         'cyclops-core-232758:3159497': [true],
         'integrated-terminals-295910:3010622': [debug_terminals],
         'integrated-tunnels-251389:3159511': [debug_tunnels],
+        'integrated-crafting-287357:3010631': [debug_crafting],
+        'forestry-59751:2684780': [debug_forestry],
 ]
 
 final def runtime_dependencies = [
