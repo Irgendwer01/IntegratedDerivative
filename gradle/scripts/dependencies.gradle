@@ -12,6 +12,7 @@ final def mod_dependencies = [
         'integrated-dynamics-236307:3159505': [true],
         'common-capabilities-247007:3053017': [true],
         'cyclops-core-232758:3159497': [true],
+        'jei-238222:5101347': [true],
         'integrated-terminals-295910:3010622': [debug_terminals],
         'integrated-tunnels-251389:3159511': [debug_tunnels],
         'integrated-crafting-287357:3010631': [debug_crafting],
@@ -19,7 +20,6 @@ final def mod_dependencies = [
 ]
 
 final def runtime_dependencies = [
-        'jei-238222:5101347': [true],
         'hwyla-253449:2568751': [true],
         'storage-drawers-223852:4655859': [run_drawers],
         'chameleon-230497:2450900': [run_drawers],

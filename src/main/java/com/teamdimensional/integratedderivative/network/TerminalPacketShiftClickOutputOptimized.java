@@ -3,6 +3,7 @@ package com.teamdimensional.integratedderivative.network;
 import com.teamdimensional.integratedderivative.enums.ShiftClickMode;
 import com.teamdimensional.integratedderivative.mixins.dynamics.IngredientChannelAdapterMixin;
 import com.teamdimensional.integratedderivative.util.CombinedIngredientStorage;
+import com.teamdimensional.integratedderivative.util.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;
@@ -124,24 +125,7 @@ public class TerminalPacketShiftClickOutputOptimized extends PacketCodec {
         }
 
         List<ItemStack> stacks = slots.subList(1, 10).stream().map(Slot::getStack).collect(Collectors.toList());
-        // Now comes the problem that we have to modify stack sizes for equivalent stacks
-        List<ItemStack> taken = new LinkedList<>();
-        for (ItemStack s : stacks) {
-            if (s.isEmpty()) continue;
-            boolean grew = false;
-            for (ItemStack u : taken) {
-                if (s.isItemEqual(u) && (Objects.equals(s.getTagCompound(), u.getTagCompound()))) {
-                    u.grow(1);
-                    grew = true;
-                    break;
-                }
-            }
-            if (!grew) {
-                ItemStack copy = s.copy();
-                copy.setCount(1);
-                taken.add(copy);
-            }
-        }
+        List<ItemStack> taken = StackUtil.compactStacks(stacks, true);
 
         boolean hasRateLimits =
             storage instanceof IngredientChannelAdapter && ((IngredientChannelAdapterMixin) storage).getLimitsEnabled();

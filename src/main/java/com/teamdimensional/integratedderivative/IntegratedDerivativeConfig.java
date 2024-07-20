@@ -1,5 +1,6 @@
 package com.teamdimensional.integratedderivative;
 
+import com.teamdimensional.integratedderivative.enums.JEICompactingMode;
 import com.teamdimensional.integratedderivative.enums.ShiftClickMode;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -10,11 +11,33 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = Tags.MOD_ID, category = "")
 public class IntegratedDerivativeConfig {
 
+    @Config.Comment("Tweaks to Integrated Dynamics")
+    public static IntegratedDynamicsTweaks dynamicsTweaks = new IntegratedDynamicsTweaks();
+
     @Config.Comment("Fixes to Integrated Terminals")
     public static IntegratedTerminalsFixes terminalsFixes = new IntegratedTerminalsFixes();
 
     @Config.Comment("Tweaks to Integrated Terminals")
     public static IntegratedTerminalsTweaks terminalsTweaks = new IntegratedTerminalsTweaks();
+
+    public static class IntegratedDynamicsTweaks {
+        @Config.Comment("How should we compact the recipes? " +
+            "Large means the recipe has more than 9 filled input slots and/or more than 3 filled output slots. " +
+            "Lossy means the recipe has more than 9 distinct inputs and/ore more than 9 distinct outputs. " +
+            "Blacklisted recipes will never be compacted. Clientside only.")
+        public JEICompactingMode jeiCompactingMode = JEICompactingMode.COMPACT_ALWAYS;
+
+        @Config.Comment("Should we remove the first ingredient from Carpenter and Thermionic Fabricator when applicable? Clientside only.")
+        public boolean autoCompactForestryRecipes = true;
+
+        @Config.Comment("These recipe categories should never be compacted when JEI recipes are pulled into the Logic Programmer. " +
+            "These are using fully-qualified class names.")
+        public String[] recipeCompactingBlacklist = new String[]{
+            "mezz.jei.plugins.vanilla.crafting.CraftingRecipeCategory",
+            "forestry.factory.recipes.jei.carpenter.CarpenterRecipeCategory",
+            "forestry.factory.recipes.jei.fabricator.FabricatorRecipeCategory"
+        };
+    }
 
     public static class IntegratedTerminalsFixes {
         @Config.Comment("Should we allow shift-clicking a recipe, even if not all ingredients were found? Clientside only.")
