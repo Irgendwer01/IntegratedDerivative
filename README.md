@@ -52,3 +52,5 @@ Most of these features can be toggled in the configuration file of the mod or ed
 * Shift+clicking out of the network's storage will extract only 1 stack of item instead of filling the player's entire inventory.
   * Clientside setting.
   * Note: this looks like it voids items if your inventory is full and you're in creative mode. It ONLY voids items in creative mode. Minecraft's source is dumb, sometimes.
+* Fixed a nasty dupe when clearing terminals.
+  * Note: I am not sure whether this is a complete fix. If anyone tests it and still able to reproduce the dupe, let me know.

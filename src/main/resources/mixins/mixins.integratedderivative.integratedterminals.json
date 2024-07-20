@@ -6,13 +6,14 @@
   "minVersion": "0.8.5",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "TerminalStorageIngredientItemStackCraftingGridClearMixin",
     "TerminalStorageIngredientItemStackCraftingGridSetRecipeMixin"
   ],
   "server": [],
   "client": [
     "TerminalButtonItemStackCraftingGridClearMixin",
     "TerminalStorageRecipeTransferHandlerMixin",
-    "TerminalStorageTabIngredientComponentItemStackCraftingClientMixin",
-    "TerminalStorageTabIngredientComponentClientMixin"
+    "TerminalStorageTabIngredientComponentClientMixin",
+    "TerminalStorageTabIngredientComponentItemStackCraftingClientMixin"
   ]
 }
