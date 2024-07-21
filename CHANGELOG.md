@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.1] - WIP
+## [1.0.1] - 2024-07-21
 
 ### Fixes
 - Fixed a dupe with shift-clicking in the crafting grid which was introduced in 1.0.0.
