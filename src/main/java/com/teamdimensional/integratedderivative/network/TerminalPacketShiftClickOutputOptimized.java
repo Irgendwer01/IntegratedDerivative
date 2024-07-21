@@ -3,7 +3,6 @@ package com.teamdimensional.integratedderivative.network;
 import com.teamdimensional.integratedderivative.enums.ShiftClickMode;
 import com.teamdimensional.integratedderivative.mixins.dynamics.IngredientChannelAdapterMixin;
 import com.teamdimensional.integratedderivative.util.CombinedIngredientStorage;
-import com.teamdimensional.integratedderivative.util.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;
@@ -28,9 +27,7 @@ import org.cyclops.integratedterminals.core.terminalstorage.button.TerminalButto
 import org.cyclops.integratedterminals.inventory.container.ContainerTerminalStorage;
 import org.cyclops.integratedterminals.part.PartTypeTerminalStorage;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TerminalPacketShiftClickOutputOptimized extends PacketCodec {
@@ -58,29 +55,27 @@ public class TerminalPacketShiftClickOutputOptimized extends PacketCodec {
     public void actionClient(World world, EntityPlayer player) {
     }
 
-    private boolean extractItems(List<ItemStack> grid, IIngredientComponentStorage<ItemStack, Integer> extraction, int multiplicity, boolean simulate) {
-        return grid.stream().allMatch(s -> {
-            ItemStack copy = s.copy();
-            copy.setCount(copy.getCount() * multiplicity);
-            return extraction.extract(copy, ItemMatch.EXACT, simulate) != ItemStack.EMPTY;
-        });
-    }
+    private int computeMultiplicityAndExtract(List<Slot> grid, IIngredientComponentStorage<ItemStack, Integer> extraction, int maxMultiplicity) {
+        int multiplicity = maxMultiplicity - 1;
+        for (int i = 0; i < maxMultiplicity; i++) {
+            boolean shouldContinue = true;
+            for (Slot slot : grid) {
+                ItemStack stack = slot.getStack();
 
-    private int computeMultiplicityAndExtract(List<ItemStack> grid, IIngredientComponentStorage<ItemStack, Integer> extraction, int maxMultiplicity) {
-        int minMultiplicity = 1;
-        if (!extractItems(grid, extraction, 1, true)) return 1;
-        while (minMultiplicity < maxMultiplicity) {
-            int midMultiplicity = (maxMultiplicity + minMultiplicity + 1) / 2;
-            // We subtract 1 because the first batch is extracted from the grid itself
-            if (extractItems(grid, extraction, midMultiplicity - 1, true)) {
-                minMultiplicity = midMultiplicity;
-            } else {
-                maxMultiplicity = midMultiplicity - 1;
+                if (stack.isEmpty()) continue;
+                if (stack.getCount() > 1) {
+                    stack.shrink(1);
+                } else if (extraction.extract(slot.getStack(), ItemMatch.EXACT, false).isEmpty()) {
+                    slot.inventory.setInventorySlotContents(slot.getSlotIndex(), ItemStack.EMPTY);
+                    shouldContinue = false;
+                }
+            }
+            if (!shouldContinue) {
+                multiplicity = i;
+                break;
             }
         }
-        // at this point both values are the same
-        extractItems(grid, extraction, minMultiplicity - 1, false);
-        return minMultiplicity;
+        return multiplicity + 1;
     }
 
     @SuppressWarnings("unchecked")
@@ -124,19 +119,18 @@ public class TerminalPacketShiftClickOutputOptimized extends PacketCodec {
             maxMultiplicity = (maxStackSize - 1) / craftingOutputSize + 1;
         }
 
-        List<ItemStack> stacks = slots.subList(1, 10).stream().map(Slot::getStack).collect(Collectors.toList());
-        List<ItemStack> taken = StackUtil.compactStacks(stacks, true);
+        List<Slot> inputs = slots.subList(1, 10);
 
         boolean hasRateLimits =
             storage instanceof IngredientChannelAdapter && ((IngredientChannelAdapterMixin) storage).getLimitsEnabled();
         if (hasRateLimits) {
             IngredientChannelAdapter<ItemStack, Integer> indexedStorage = (IngredientChannelAdapter<ItemStack, Integer>) storage;
             indexedStorage.disableLimits();
-            int multiplicity = computeMultiplicityAndExtract(taken, extraction, maxMultiplicity);
+            int multiplicity = computeMultiplicityAndExtract(inputs, extraction, maxMultiplicity);
             indexedStorage.disableLimits();
             return multiplicity;
         } else {
-            return computeMultiplicityAndExtract(taken, extraction, maxMultiplicity);
+            return computeMultiplicityAndExtract(inputs, extraction, maxMultiplicity);
         }
     }
 
@@ -148,13 +142,14 @@ public class TerminalPacketShiftClickOutputOptimized extends PacketCodec {
                 List<Triple<Slot, Integer, Integer>> tabSlots = container.getTabSlots(this.tabId);
                 // slot 0 = output, slots 1-9 = inputs
                 List<Slot> inputs = tabSlots.subList(0, 10).stream().map(Triple::getLeft).collect(Collectors.toList());
+                if (!inputs.get(0).getHasStack()) return;  // nothing can be crafted
 
                 TerminalStorageTabIngredientComponentItemStackCraftingCommon tabCommonCrafting = (TerminalStorageTabIngredientComponentItemStackCraftingCommon)tabCommon;
                 PartTypeTerminalStorage.State partState = container.getPartState();
                 SlotCrafting slotCrafting = tabCommonCrafting.getSlotCrafting();
 
+                ItemStack resultStack = slotCrafting.getStack();
                 int multiplicity = extractComponents(inputs, container, player, tabCommonCrafting);
-                ItemStack resultStack = slotCrafting.onTake(player, slotCrafting.decrStackSize(64));
                 resultStack.setCount(resultStack.getCount() * multiplicity);
                 player.inventory.placeItemBackInInventory(world, resultStack);
                 tabCommonCrafting.updateCraftingResult(player, player.openContainer, partState);
