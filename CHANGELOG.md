@@ -5,6 +5,7 @@
 ### Fixes
 - Fixed a dupe with shift-clicking in the crafting grid which was introduced in 1.0.0.
   - This unfortunately required slowing down shift-clicking, but it seems acceptable and unfixable beyond it.
+- Fixed Delayer outputting a cryptic error when the variable output by it is used as an invalid type.
 
 ## [1.0.0] - 2024-07-20
 
