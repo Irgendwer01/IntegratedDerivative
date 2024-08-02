@@ -41,6 +41,7 @@ public class TerminalStorageIngredientItemStackCraftingGridSetRecipeMixin {
                     iterator.replace(inInv);
                     slot.putStack(copied);
                     // We keep true return value so our inventory stack doesn't get overridden by the empty stack
+                    break;
                 }
             }
         }
