@@ -36,7 +36,7 @@ Most of these features can be toggled in the configuration file of the mod or ed
   * This must be enabled on the server side to work, and can be disabled on the client side if desired.
 * Recipes can be shift-clicked from JEI even if not all components are present in the network and/or inventory.
   * This only has to be enabled on the clientside. Disabled by default.
-* Significantly optimized performance of shift+clicking the crafting result in the Storage Terminal.
+* Significantly optimized performance of shift+clicking the crafting result in the Storage Terminal with certain combinations of mods (Triumph is a particular example).
   * Some statistics: shift+clicking the Compressed Dirt recipe in Enigmatica 2 Expert Extended without this mod causes a lag spike of 5-10 seconds. With this mod, it is barely slower than crafting in a vanilla crafting table.
   * This has to be enabled both on the server and the client.
 * Shift+clicking in the crafting grid now outputs configurable amounts of an item.
