@@ -7,6 +7,7 @@ def debug_crafting = true
 def run_spark = true
 def run_drawers = true
 def debug_forestry = true
+def debug_mouse_tweaks = false
 
 final def mod_dependencies = [
         'integrated-dynamics-236307:3159505': [true],
@@ -17,6 +18,7 @@ final def mod_dependencies = [
         'integrated-tunnels-251389:3159511': [debug_tunnels],
         'integrated-crafting-287357:3010631': [debug_crafting],
         'forestry-59751:2684780': [debug_forestry],
+        'mouse-tweaks-unofficial-461660:4661407': [debug_mouse_tweaks],
 ]
 
 final def runtime_dependencies = [
