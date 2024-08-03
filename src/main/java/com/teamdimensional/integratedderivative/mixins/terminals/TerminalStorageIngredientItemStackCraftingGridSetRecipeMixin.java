@@ -20,7 +20,7 @@ public class TerminalStorageIngredientItemStackCraftingGridSetRecipeMixin {
 
     @WrapOperation(method =
         "actionServer",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 1))
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 1, remap = true))
     private boolean pullMissingFromInventory(
         ItemStack instance, Operation<Boolean> original, @Local Slot slot,
         @Local(argsOnly = true) EntityPlayerMP player,
