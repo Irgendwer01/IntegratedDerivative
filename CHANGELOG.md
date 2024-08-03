@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.2] - 2024-08-04
+
+### Tweaks
+
+- Network Terminal is now compatible with Mouse Tweaks! Shift+Dragging items in the player's inventory will send all of those items to the network.
+
+### Fixes
+
+- Shift-clicking recipes from JEI into the crafting terminal will no longer void items in special cases (introduced in 1.0.0).
+- Shift-clicking the output from the crafting grid will no longer void items in special cases (introduced in 1.0.0).
+- Shift-clicking recipes from JEI into the crafting terminal will properly pull items from the player's inventory in the production environment (in 1.0.0 only worked in dev environment).
+
 ## [1.0.1] - 2024-07-21
 
 ### Fixes
