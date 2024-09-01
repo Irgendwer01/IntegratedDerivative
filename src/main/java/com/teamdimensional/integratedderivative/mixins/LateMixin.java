@@ -12,6 +12,7 @@ public class LateMixin implements ILateMixinLoader {
     public static final List<String> modMixins = ImmutableList.of(
         "integratedterminals",
         "integrateddynamics",
+        "integratedtunnels",
         "forestry",
         "mousetweaks"
     );

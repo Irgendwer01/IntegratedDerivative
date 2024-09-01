@@ -20,6 +20,9 @@ public class IntegratedDerivativeConfig {
     @Config.Comment("Tweaks to Integrated Terminals")
     public static IntegratedTerminalsTweaks terminalsTweaks = new IntegratedTerminalsTweaks();
 
+    @Config.Comment("Fixes to Integrated Tunnels")
+    public static IntegratedTunnelsFixes tunnelsFixes = new IntegratedTunnelsFixes();
+
     public static class IntegratedDynamicsTweaks {
         @Config.Comment("How should we compact the recipes? " +
             "Large means the recipe has more than 9 filled input slots and/or more than 3 filled output slots. " +
@@ -59,6 +62,11 @@ public class IntegratedDerivativeConfig {
 
         @Config.Comment("Should shift+clicking items out of the Terminal extract one stack at a time instead of the full inventory? Clientside only. Requires that the mod is installed on the server.")
         public boolean shiftClickOneStack = true;
+    }
+
+    public static class IntegratedTunnelsFixes {
+        @Config.Comment("Should we fix World Block Importer being able to break indestructible blocks?")
+        public boolean fixBedrockBreaker = true;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
