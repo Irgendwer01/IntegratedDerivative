@@ -17,9 +17,6 @@ public abstract class ValueTypeIntegerExtender extends ValueTypeBase<ValueTypeIn
 
     @Override
     public ValueTypeInteger.ValueInteger gateway$power(ValueTypeInteger.ValueInteger a, ValueTypeInteger.ValueInteger b) throws EvaluationException {
-        if (a.getRawValue() == 0 && b.getRawValue() == 0) {
-            throw new EvaluationException("Cannot compute 0^0");
-        }
         return ValueTypeInteger.ValueInteger.of((int) Math.pow(a.getRawValue(), b.getRawValue()));
     }
 }

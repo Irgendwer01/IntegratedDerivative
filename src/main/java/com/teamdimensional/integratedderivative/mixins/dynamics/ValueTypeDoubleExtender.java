@@ -17,9 +17,6 @@ public abstract class ValueTypeDoubleExtender extends ValueTypeBase<ValueTypeDou
 
     @Override
     public ValueTypeDouble.ValueDouble gateway$power(ValueTypeDouble.ValueDouble a, ValueTypeDouble.ValueDouble b) throws EvaluationException {
-        if (a.getRawValue() == 0 && b.getRawValue() == 0) {
-            throw new EvaluationException("Cannot compute 0^0");
-        }
         if (a.getRawValue() < 0) {
             throw new EvaluationException("Cannot compute powers of negative Double");
         }
