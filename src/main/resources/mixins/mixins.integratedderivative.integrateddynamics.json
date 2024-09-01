@@ -6,8 +6,11 @@
   "minVersion": "0.8.5",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "DelayVariableFacadeMixin",
     "IngredientChannelAdapterMixin",
     "LogicProgrammerTransferHandlerMixin",
-    "DelayVariableFacadeMixin"
+    "ValueTypeCategoryNumberExtender",
+    "ValueTypeDoubleExtender",
+    "ValueTypeIntegerExtender"
   ]
 }

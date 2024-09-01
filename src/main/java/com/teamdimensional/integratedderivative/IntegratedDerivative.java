@@ -42,6 +42,7 @@ public class IntegratedDerivative extends ModBaseVersionable {
         if (proxy != null) {
             proxy.registerEventHooks();
         }
+        DerivativeOperators.load();
         LOGGER.info("Hello From {}!", Tags.MOD_NAME);
     }
 
