@@ -2,6 +2,7 @@ package com.teamdimensional.integratedderivative.util;
 
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +12,7 @@ public class StackUtil {
     public static List<ItemStack> compactStacks(List<ItemStack> stacks, boolean resetSize) {
         List<ItemStack> output = new ArrayList<>();
         for (ItemStack s : stacks) {
-            if (s.isEmpty()) continue;
+            if (s == null || s.isEmpty()) continue;
             boolean grew = false;
             for (ItemStack u : output) {
                 if (s.isItemEqual(u) && (Objects.equals(s.getTagCompound(), u.getTagCompound()))) {
