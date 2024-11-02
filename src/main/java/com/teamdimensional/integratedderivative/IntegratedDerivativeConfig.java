@@ -11,22 +11,25 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = Tags.MOD_ID, category = "")
 public class IntegratedDerivativeConfig {
 
+    @Config.Comment("Fixes for Integrated Dynamics")
+    public static IntegratedDynamicsFixes dynamicsFixes = new IntegratedDynamicsFixes();
+
     @Config.Comment("Tweaks to Integrated Dynamics")
     public static IntegratedDynamicsTweaks dynamicsTweaks = new IntegratedDynamicsTweaks();
 
-    @Config.Comment("Fixes to Integrated Terminals")
+    @Config.Comment("Fixes for Integrated Terminals")
     public static IntegratedTerminalsFixes terminalsFixes = new IntegratedTerminalsFixes();
 
     @Config.Comment("Tweaks to Integrated Terminals")
     public static IntegratedTerminalsTweaks terminalsTweaks = new IntegratedTerminalsTweaks();
 
-    @Config.Comment("Fixes to Integrated Tunnels")
+    @Config.Comment("Fixes for Integrated Tunnels")
     public static IntegratedTunnelsFixes tunnelsFixes = new IntegratedTunnelsFixes();
 
     public static class IntegratedDynamicsTweaks {
         @Config.Comment("How should we compact the recipes? " +
             "Large means the recipe has more than 9 filled input slots and/or more than 3 filled output slots. " +
-            "Lossy means the recipe has more than 9 distinct inputs and/ore more than 9 distinct outputs. " +
+            "Lossy means the recipe will be compacted even when it has more than 9 distinct inputs and/or more than 3 distinct outputs. " +
             "Blacklisted recipes will never be compacted. Clientside only.")
         public JEICompactingMode jeiCompactingMode = JEICompactingMode.COMPACT_ALWAYS;
 
@@ -40,6 +43,11 @@ public class IntegratedDerivativeConfig {
             "forestry.factory.recipes.jei.carpenter.CarpenterRecipeCategory",
             "forestry.factory.recipes.jei.fabricator.FabricatorRecipeCategory"
         };
+    }
+
+    public static class IntegratedDynamicsFixes {
+        @Config.Comment("Should we replace Omni-Directional Connector 'channel copy' crafting with a less janky version?")
+        public boolean fixODCCrafting = true;
     }
 
     public static class IntegratedTerminalsFixes {

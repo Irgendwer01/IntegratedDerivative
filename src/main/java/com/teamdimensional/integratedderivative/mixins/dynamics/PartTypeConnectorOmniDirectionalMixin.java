@@ -1,5 +1,6 @@
 package com.teamdimensional.integratedderivative.mixins.dynamics;
 
+import com.teamdimensional.integratedderivative.IntegratedDerivativeConfig;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import org.cyclops.integrateddynamics.part.PartTypeConnectorOmniDirectional;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +14,7 @@ public class PartTypeConnectorOmniDirectionalMixin {
     @Inject(method = "onCrafted", at = @At("HEAD"), cancellable = true)
     private void onCrafted(PlayerEvent.ItemCraftedEvent event, CallbackInfo ci) {
         // Replace buggy Omni-directional connector duplication recipe with one that actually works
-        ci.cancel();
+        if (IntegratedDerivativeConfig.dynamicsFixes.fixODCCrafting) ci.cancel();
     }
 
 }

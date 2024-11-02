@@ -2,13 +2,14 @@ package com.teamdimensional.integratedderivative.integration.jei;
 
 import com.teamdimensional.integratedderivative.IntegratedDerivative;
 import com.teamdimensional.integratedderivative.network.LPPacketJEIDragging;
+import com.teamdimensional.integratedderivative.recipe.CopyODCChannelRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.gui.IGhostIngredientHandler;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import org.cyclops.cyclopscore.inventory.SimpleInventory;
@@ -26,6 +27,7 @@ public class IntegratedDerivativeJEIPlugin implements IModPlugin {
     public void register(IModRegistry registry) {
         IntegratedDerivative.LOGGER.info("Registering our JEI plugin");
         registry.addGhostIngredientHandler(GuiLogicProgrammerBase.class, new LPGhostIngredientHandler<>());
+        registry.handleRecipes(CopyODCChannelRecipe.class, CopyODCChannel::new, VanillaRecipeCategoryUid.CRAFTING);
     }
 
     private static class LPGhostIngredientHandler<T extends GuiLogicProgrammerBase> implements IGhostIngredientHandler<T> {
