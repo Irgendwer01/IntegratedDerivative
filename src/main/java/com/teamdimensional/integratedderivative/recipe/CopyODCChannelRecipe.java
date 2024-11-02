@@ -1,5 +1,6 @@
 package com.teamdimensional.integratedderivative.recipe;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -67,13 +68,16 @@ public class CopyODCChannelRecipe extends IForgeRegistryEntry.Impl<IRecipe> impl
     @Override
     public @Nonnull ItemStack getRecipeOutput() {
         ItemStack stack = new ItemStack(connector(), 2);
-        NBTTagCompound cmp = new NBTTagCompound();
-        NBTTagCompound display = new NBTTagCompound();
-        NBTTagList lore = new NBTTagList();
-        lore.appendTag(new NBTTagString(I18n.format("tooltip.omni_duplicate.name")));
-        cmp.setTag("display", display);
-        display.setTag("Lore", lore);
-        stack.setTagCompound(cmp);
+
+        if (Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.isRemote) {
+            NBTTagCompound cmp = new NBTTagCompound();
+            NBTTagCompound display = new NBTTagCompound();
+            NBTTagList lore = new NBTTagList();
+            lore.appendTag(new NBTTagString(I18n.format("tooltip.omni_duplicate.name")));
+            cmp.setTag("display", display);
+            display.setTag("Lore", lore);
+            stack.setTagCompound(cmp);
+        }
         return stack;
     }
 
