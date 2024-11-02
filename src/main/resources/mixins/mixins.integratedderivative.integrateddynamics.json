@@ -11,6 +11,7 @@
     "LogicProgrammerTransferHandlerMixin",
     "ValueTypeCategoryNumberExtender",
     "ValueTypeDoubleExtender",
-    "ValueTypeIntegerExtender"
+    "ValueTypeIntegerExtender",
+    "PartTypeConnectorOmniDirectionalMixin"
   ]
 }
