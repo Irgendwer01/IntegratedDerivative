@@ -23,51 +23,52 @@ public class CopyODCChannelRecipe extends IForgeRegistryEntry.Impl<IRecipe> impl
         return PartTypes.CONNECTOR_OMNI.getItem();
     }
 
+    private final IRecipe other;
+
+    public CopyODCChannelRecipe(IRecipe other) {
+        this.other = other;
+    }
+
     private int getConnectorChannel(InventoryCrafting inv) {
-        ItemStack channeled = null;
-        boolean foundEmpty = false;
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             ItemStack stack = inv.getStackInSlot(i);
             if (stack.isEmpty()) continue;
-            if (stack.getItem() != connector()) return -1;
+            if (stack.getItem() != connector()) continue;
 
             boolean isEmpty = !stack.hasTagCompound() || !Objects.requireNonNull(stack.getTagCompound()).hasKey("omnidir-group-key");
-            if (isEmpty) {
-                if (foundEmpty) return -1;
-                foundEmpty = true;
-            } else {
-                if (channeled != null) return -1;
-                channeled = stack;
+            if (!isEmpty) {
+                return stack.getTagCompound().getInteger("omnidir-group-key");
             }
         }
 
-        if (channeled == null || !foundEmpty) return -1;
-        return channeled.getTagCompound().getInteger("omnidir-group-key");
+        return -1;
     }
 
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World worldIn) {
-        return getConnectorChannel(inv) != -1;
+        return other.matches(inv, worldIn);
     }
 
     @Override
     public @Nonnull ItemStack getCraftingResult(@Nonnull InventoryCrafting inv) {
         int newChannel = getConnectorChannel(inv);
-        ItemStack stack = new ItemStack(connector(), 2);
-        NBTTagCompound cmp = new NBTTagCompound();
-        cmp.setInteger("omnidir-group-key", newChannel);
-        stack.setTagCompound(cmp);
+        ItemStack stack = other.getCraftingResult(inv);
+        if (newChannel != -1) {
+            NBTTagCompound cmp = new NBTTagCompound();
+            cmp.setInteger("omnidir-group-key", newChannel);
+            stack.setTagCompound(cmp);
+        }
         return stack;
     }
 
     @Override
     public boolean canFit(int width, int height) {
-        return width * height >= 2;
+        return other.canFit(width, height);
     }
 
     @Override
     public @Nonnull ItemStack getRecipeOutput() {
-        ItemStack stack = new ItemStack(connector(), 2);
+        ItemStack stack = other.getRecipeOutput();
 
         if (FMLCommonHandler.instance().getSide().isClient()) {
             NBTTagCompound cmp = new NBTTagCompound();
@@ -83,9 +84,6 @@ public class CopyODCChannelRecipe extends IForgeRegistryEntry.Impl<IRecipe> impl
 
     @Override
     public @Nonnull NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> ing = NonNullList.create();
-        ing.add(Ingredient.fromStacks(new ItemStack(connector())));
-        ing.add(Ingredient.fromStacks(new ItemStack(connector())));
-        return ing;
+        return other.getIngredients();
     }
 }
