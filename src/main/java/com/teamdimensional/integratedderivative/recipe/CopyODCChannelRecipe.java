@@ -1,6 +1,5 @@
 package com.teamdimensional.integratedderivative.recipe;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -12,6 +11,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.cyclops.integrateddynamics.core.part.PartTypes;
 
@@ -69,7 +69,7 @@ public class CopyODCChannelRecipe extends IForgeRegistryEntry.Impl<IRecipe> impl
     public @Nonnull ItemStack getRecipeOutput() {
         ItemStack stack = new ItemStack(connector(), 2);
 
-        if (Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.isRemote) {
+        if (FMLCommonHandler.instance().getSide().isClient()) {
             NBTTagCompound cmp = new NBTTagCompound();
             NBTTagCompound display = new NBTTagCompound();
             NBTTagList lore = new NBTTagList();
