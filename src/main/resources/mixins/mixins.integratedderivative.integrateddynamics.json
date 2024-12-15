@@ -7,11 +7,12 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "DelayVariableFacadeMixin",
+    "InfoBookParserMixin",
     "IngredientChannelAdapterMixin",
     "LogicProgrammerTransferHandlerMixin",
+    "PartTypeConnectorOmniDirectionalMixin",
     "ValueTypeCategoryNumberExtender",
     "ValueTypeDoubleExtender",
-    "ValueTypeIntegerExtender",
-    "PartTypeConnectorOmniDirectionalMixin"
+    "ValueTypeIntegerExtender"
   ]
 }
